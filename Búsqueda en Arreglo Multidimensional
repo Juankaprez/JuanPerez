@@ -1,1 +1,22 @@
-Búsqueda en Arreglo Multidimensional
+#Búsqueda en Arreglo Multidimensional
+# Matriz bidimensional (3×3)
+matriz = [
+    [9, 8, 7],
+    [6, 5, 4],
+    [3, 2, 1]
+]
+valor_buscado = 7
+fila_e = -1
+columna_e = -1
+for fila in range(len(matriz)):
+    for columna in range(len(matriz[fila])):
+        if matriz[fila][columna] == valor_buscado:
+            fila_e = fila
+            columna_e = columna
+            break 
+    if fila_e != -1:
+        break 
+if fila_e != -1:
+    print(f"Se encontró {valor_buscado} en la fila {fila_e} y columna {columna_e}.")
+else:
+    print(f"{valor_buscado} no se encontró en la matriz.")
