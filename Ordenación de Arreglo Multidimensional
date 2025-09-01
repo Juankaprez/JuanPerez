@@ -1,0 +1,25 @@
+#Ordenación de Arreglo Multidimensional
+def bubble_sort(fila):
+    n = len(fila)
+    for i in range(n):
+        for j in range(0, n - i - 1):
+            if fila[j] > fila[j + 1]:
+                fila[j], fila[j + 1] = fila[j + 1], fila[j]
+    return fila
+
+def imprimir_matriz(matriz):
+    for fila in matriz:
+        print(fila)
+# Matriz bidimensional (3×3)
+matriz = [
+    [0, 1, 7],
+    [8, 5, 3],
+    [2, 4, 6]
+]
+
+print("Matriz original:")
+imprimir_matriz(matriz)
+indice_fila = 0
+matriz[indice_fila] = bubble_sort(matriz[indice_fila])
+print(f"\nMatriz después de ordenar la fila {indice_fila}:")
+imprimir_matriz(matriz)
