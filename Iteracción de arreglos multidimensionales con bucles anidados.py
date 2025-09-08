@@ -1,31 +1,36 @@
-# Ejemplo de un arreglo multidimensional (matriz) de notas
-# Cada fila es un estudiante, cada columna es una nota
-notas_estudiantes = [
-    [85, 92, 78],  # Estudiante 1
-    [90, 88, 95],  # Estudiante 2
-    [70, 75, 80]   # Estudiante 3
-]
+import random
 
-# Variables para calcular el promedio
-total_sum = 0
-total_notas = 0
+# Definiciones básicas
+ciudades = ["Bogotá", "Quito", "Buenos Aires", "New York"]
+dias_semana = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
+num_semanas = 4
 
-# Bucle exterior: recorre los estudiantes (filas)
-for estudiante_notas in notas_estudiantes:
-    # Bucle interior: recorre las notas de cada estudiante (columnas)
-    for nota in estudiante_notas:
-        total_sum += nota       # Sumar la nota al total general
-        total_notas += 1      # Incrementar el contador de notas
+# Crear matriz 3D: ciudades x días x semanas
+# matriz_temperaturas[ciudad][día][semana] = temperatura
+matriz_temperaturas = []
 
-# Calcular el promedio general de todas las notas
-promedio_general = total_sum / total_notas
+for nombre_ciudad in ciudades:
+    ciudad_datos = []
+    for dia in dias_semana:
+        semana_datos = []
+        for semana in range(num_semanas):
+            # Generamos una temperatura aleatoria entre 10 y 35 grados
+            temp = round(random.uniform(10, 35), 1)
+            semana_datos.append(temp)
+        ciudad_datos.append(semana_datos)
+    matriz_temperaturas.append(ciudad_datos)
 
-print(f"El promedio general de todas las notas es: {promedio_general:.2f}")
+# Mostrar promedios
+print("\n📊 Promedio de temperaturas por ciudad y semana:\n")
 
-# --- Opcional: Calcular el promedio por estudiante ---
-
-print("\n--- Promedios por estudiante ---")
-for i, estudiante_notas in enumerate(notas_estudiantes):
+for i_ciudad, nombre_ciudad in enumerate(ciudades):
+    print(f"🌆 {nombre_ciudad}:")
+    for semana in range(num_semanas):
+        suma_temperaturas = 0
+        for dia in range(len(dias_semana)):
+            suma_temperaturas += matriz_temperaturas[i_ciudad][dia][semana]
+        promedio = suma_temperaturas / len(dias_semana)
+        print(f"  Semana {semana + 1}: {promedio:.2f}°C")
     suma_estudiante = 0
     for nota in estudiante_notas:
         suma_estudiante += nota
