@@ -31,10 +31,9 @@ for i_ciudad, nombre_ciudad in enumerate(ciudades):
             suma_temperaturas += matriz_temperaturas[i_ciudad][dia][semana]
         promedio = suma_temperaturas / len(dias_semana)
         print(f"  Semana {semana + 1}: {promedio:.2f}°C")
-  print()
 
 # Función para calcular el promedio total por ciudad
-def calcular_promedio_ciudades(temperaturas, ciudades):
+def calcular_promedio_ciudades(matriz_temperaturas, ciudades):
     """
     Calcula el promedio total de temperatura por ciudad.
 
@@ -50,7 +49,7 @@ def calcular_promedio_ciudades(temperaturas, ciudades):
     for i, ciudad in enumerate(ciudades):
         suma = 0
         cantidad_datos = 0
-        for semana in temperaturas[i]:
+        for semana in matriz_temperaturas[i]:
             for temp in semana:
                 suma += temp
                 cantidad_datos += 1
@@ -60,7 +59,7 @@ def calcular_promedio_ciudades(temperaturas, ciudades):
     return promedios_por_ciudad
 
 # Calcular y mostrar el promedio total por ciudad
-promedios = calcular_promedio_ciudades(temperaturas, ciudades)
+promedios = calcular_promedio_ciudades(matriz_temperaturas, ciudades)
 
 print("Promedio total de temperaturas por ciudad:\n")
 for ciudad, promedio in promedios.items():
