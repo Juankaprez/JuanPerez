@@ -31,8 +31,37 @@ for i_ciudad, nombre_ciudad in enumerate(ciudades):
             suma_temperaturas += matriz_temperaturas[i_ciudad][dia][semana]
         promedio = suma_temperaturas / len(dias_semana)
         print(f"  Semana {semana + 1}: {promedio:.2f}°C")
-    suma_estudiante = 0
-    for nota in estudiante_notas:
-        suma_estudiante += nota
-    promedio_estudiante = suma_estudiante / len(estudiante_notas)
-    print(f"El promedio del Estudiante {i+1} es: {promedio_estudiante:.2f}")
+  print()
+
+# Función para calcular el promedio total por ciudad
+def calcular_promedio_ciudades(temperaturas, ciudades):
+    """
+    Calcula el promedio total de temperatura por ciudad.
+
+    Parámetros:
+    - temperaturas (list): matriz 3D [ciudad][semana][día] con temperaturas.
+    - ciudades (list): lista con los nombres de las ciudades.
+
+    Retorna:
+    - dict: diccionario con el nombre de la ciudad como clave y su promedio como valor.
+    """
+    promedios_por_ciudad = {}
+
+    for i, ciudad in enumerate(ciudades):
+        suma = 0
+        cantidad_datos = 0
+        for semana in temperaturas[i]:
+            for temp in semana:
+                suma += temp
+                cantidad_datos += 1
+        promedio = suma / cantidad_datos if cantidad_datos else 0
+        promedios_por_ciudad[ciudad] = promedio
+
+    return promedios_por_ciudad
+
+# Calcular y mostrar el promedio total por ciudad
+promedios = calcular_promedio_ciudades(temperaturas, ciudades)
+
+print("Promedio total de temperaturas por ciudad:\n")
+for ciudad, promedio in promedios.items():
+    print(f"{ciudad}: {promedio:.2f}°C")    
